@@ -1,9 +1,16 @@
 
 window.addEventListener('DOMContentLoaded', event => {
+    const addBtn = document.getElementById('add-btn');
+    const list = document.getElementById('list');
+    const input = document.getElementById('input');
+    const ulist = document.getElementById('ulist');
 
     const todoList = {
         // It should store the todos array on an object
-        todos: ['item 1', 'item 2', 'item 3', 'item 4', 'item 5'],
+        todos: [
+            'item 1',
+            'item 2',
+        ],
 
         // It should an add todo method
         addItem(newItem) {
@@ -11,8 +18,15 @@ window.addEventListener('DOMContentLoaded', event => {
         },
 
         // It should have a display todos method
-        showItems() {
-            console.log(this.todos);
+        showItems(todoArray) {
+            this.todos.forEach(newItem => {
+                let li = document.createElement('li');
+                li.innerHTML = newItem;
+                // li.value = newItem;
+                ulist.appendChild(li);
+            })
+
+            return ;
         },
 
         // It should have a change todo method
@@ -27,18 +41,18 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
     };
+
+
+
+    addBtn.addEventListener('click', event => {
+
+        todoList.addItem(input.value);
+        todoList.showItems(todoList.todos);
+
+    })
+
+
 })
-
-
-
-console.log(todoList.todos);
-todoList.addItem('hello there')
-todoList.showItems();
-todoList.changeItem(5, 'BOOM');
-todoList.showItems();
-todoList.deleteItem(2);
-todoList.showItems();
-
 
 
 
@@ -46,4 +60,6 @@ todoList.showItems();
 
 
 // Items below to be added in version 2
-// It should have an updating timestamp at the bottom
+    // It should have a button to delete or strike out completed tasks
+    // It should have a method/button for changing existing tasks
+    // It should have an updating timestamp at the bottom

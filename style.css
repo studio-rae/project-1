@@ -3,6 +3,64 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
+.full-wrapper {
+    display: flex;
+
+}
+
+#header-wrapper {
+    width: 500px;
+    height: 100px;
+    border: solid 2px black;
+    margin: 5px;
+    background-color: rgb(170, 238, 215);
+    font-size: 50px;
+    font-weight: 200;
+}
+
+ #todo-wrapper {
+    width: 500px;
+    height: 500px;
+    border: solid 2px black;
+    margin: 5px;
+    background-color: rgb(170, 238, 215);
+
+    padding: 3px;
+}
+
+#todo-wrapper button {
+    width: 190px;
+    height: 35px;
+    background-color: rgb(144, 144, 202);
+}
+
+#todo-wrapper button:hover {
+    background-color: rgb(85, 85, 165);
+    color: wheat;
+}
+
+input {
+    width: 290px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 30px;
+}
+
+#input-area {
+    display: flex;
+}
+
+#time-wrapper {
+    width: 500px;
+    height: 50px;
+    border: solid 2px black;
+    margin: 5px;
+    background-color: rgb(170, 238, 215);
 }
 
 /* It should have a larger modern header */
