@@ -12,11 +12,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
         ],
 
-        // using to log todos array to check new input is pushed into it
-        temp() {
-            return this.todos;
-        },
-
         // It should an add todo method
         addItem(task) {
             // should not push in empty strings
@@ -62,14 +57,12 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
     };
-    console.log(todoList.todos);
-    console.log(todoList.itemCheck(input.value));
+
 
     addBtn.addEventListener('click', event => {
         todoList.showItems(input.value);
         input.value = null;
-
-        console.log(todoList.itemCheck(input.value));
+        console.log(todoList.todos);
     })
 
 })
