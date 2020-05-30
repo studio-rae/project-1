@@ -4,29 +4,50 @@ window.addEventListener('DOMContentLoaded', event => {
     const list = document.getElementById('list');
     const input = document.getElementById('input');
     const ulist = document.getElementById('ulist');
+    // let currentItem = input.value;
 
     const todoList = {
         // It should store the todos array on an object
         todos: [
-            'item 1',
-            'item 2',
+
         ],
 
+        // using to log todos array to check new input is pushed into it
+        temp() {
+            return this.todos;
+        },
+
         // It should an add todo method
-        addItem(newItem) {
-            this.todos.push(newItem);
+        addItem(task) {
+            // should not push in empty strings
+            this.todos.push(task);
+        },
+
+        // check for item
+        itemCheck() {
+            // returns false if there is no input or input is "falsey"
+            if (!input.value) return false;
+
+            // loops through todos array to check if new task already exists
+            let marray = todoList.todos;
+            for (let i = 0; i < marray.length; i++) {
+                const item = marray[i];
+                if (marray.includes(input.value)) {
+                    return true;
+                }
+            }
+            return false;
         },
 
         // It should have a display todos method
-        showItems(todoArray) {
-            this.todos.forEach(newItem => {
+        showItems(currentItem) {
+            // checks if item is not in array and if it is not then adds to list and array
+            if (!this.itemCheck()) {
                 let li = document.createElement('li');
-                li.innerHTML = newItem;
-                // li.value = newItem;
+                li.innerHTML = input.value;
                 ulist.appendChild(li);
-            })
 
-            return ;
+            }
         },
 
         // It should have a change todo method
@@ -41,16 +62,15 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
     };
-
-
+    console.log(todoList.todos);
+    console.log(todoList.itemCheck(input.value));
 
     addBtn.addEventListener('click', event => {
+        todoList.showItems(input.value);
+        input.value = null;
 
-        todoList.addItem(input.value);
-        todoList.showItems(todoList.todos);
-
+        console.log(todoList.itemCheck(input.value));
     })
-
 
 })
 
@@ -60,6 +80,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 // Items below to be added in version 2
-    // It should have a button to delete or strike out completed tasks
+    // It should have a method to strike out completed tasks
     // It should have a method/button for changing existing tasks
     // It should have an updating timestamp at the bottom
