@@ -1,18 +1,48 @@
 
 window.addEventListener('DOMContentLoaded', event => {
+    const addBtn = document.getElementById('add-btn');
+    const list = document.getElementById('list');
+    const input = document.getElementById('input');
+    const ulist = document.getElementById('ulist');
+    // let currentItem = input.value;
 
     const todoList = {
         // It should store the todos array on an object
-        todos: ['item 1', 'item 2', 'item 3', 'item 4', 'item 5'],
+        todos: [
+
+        ],
 
         // It should an add todo method
-        addItem(newItem) {
-            this.todos.push(newItem);
+        addItem(task) {
+            // should not push in empty strings
+            this.todos.push(task);
+        },
+
+        // check for item
+        itemCheck() {
+            // returns false if there is no input or input is "falsey"
+            if (!input.value) return false;
+
+            // loops through todos array to check if new task already exists
+            let marray = todoList.todos;
+            for (let i = 0; i < marray.length; i++) {
+                const item = marray[i];
+                if (marray.includes(input.value)) {
+                    return true;
+                }
+            }
+            return false;
         },
 
         // It should have a display todos method
-        showItems() {
-            console.log(this.todos);
+        showItems(currentItem) {
+            // checks if item is not in array and if it is not then adds to list and array
+            if (!this.itemCheck()) {
+                let li = document.createElement('li');
+                li.innerHTML = input.value;
+                ulist.appendChild(li);
+
+            }
         },
 
         // It should have a change todo method
@@ -27,18 +57,15 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
     };
+
+
+    addBtn.addEventListener('click', event => {
+        todoList.showItems(input.value);
+        input.value = null;
+        console.log(todoList.todos);
+    })
+
 })
-
-
-
-console.log(todoList.todos);
-todoList.addItem('hello there')
-todoList.showItems();
-todoList.changeItem(5, 'BOOM');
-todoList.showItems();
-todoList.deleteItem(2);
-todoList.showItems();
-
 
 
 
@@ -46,4 +73,6 @@ todoList.showItems();
 
 
 // Items below to be added in version 2
-// It should have an updating timestamp at the bottom
+    // It should have a method to strike out completed tasks
+    // It should have a method/button for changing existing tasks
+    // It should have an updating timestamp at the bottom
